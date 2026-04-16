@@ -9,6 +9,8 @@ require("dotenv").config({ path: path.join(ROOT, ".env") });
 const DATA_ROOT = path.resolve(process.env.DATA_ROOT || ROOT);
 const DATA_DIR = path.join(DATA_ROOT, "data");
 const UPLOADS_DIR = path.join(DATA_ROOT, "uploads");
+const REPO_DATA_DIR = path.join(ROOT, "data");
+const REPO_UPLOADS_DIR = path.join(ROOT, "uploads");
 const SHOWS_FILE = path.join(DATA_DIR, "shows.json");
 const DEFAULT_SHOWS_FILE = path.join(ROOT, "data", "default-shows.json");
 
@@ -27,6 +29,34 @@ function ensureDirs() {
   if (!fs.existsSync(UPLOADS_DIR)) fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 }
 
+function seedUploadsFromRepoIfEmpty() {
+  // If the mounted volume is empty, copy the repo's bundled uploads once.
+  // This avoids "images disappeared" on first Railway deploy.
+  try {
+    if (!fs.existsSync(REPO_UPLOADS_DIR)) return;
+    if (!fs.existsSync(UPLOADS_DIR)) return;
+
+    const existing = fs
+      .readdirSync(UPLOADS_DIR)
+      .filter((x) => x && x !== ".gitkeep");
+    if (existing.length > 0) return;
+
+    const repoEntries = fs
+      .readdirSync(REPO_UPLOADS_DIR)
+      .filter((x) => x && x !== ".gitkeep");
+    for (const name of repoEntries) {
+      const src = path.join(REPO_UPLOADS_DIR, name);
+      const dst = path.join(UPLOADS_DIR, name);
+      if (!fs.existsSync(src)) continue;
+      const stat = fs.statSync(src);
+      if (!stat.isFile()) continue;
+      fs.copyFileSync(src, dst);
+    }
+  } catch {
+    // Seeding is best-effort.
+  }
+}
+
 function readDefaultShowsPayload() {
   const raw = fs.readFileSync(DEFAULT_SHOWS_FILE, "utf8");
   const data = JSON.parse(raw);
@@ -43,7 +73,16 @@ function clonePayload(data) {
 function readShows() {
   ensureDirs();
   if (!fs.existsSync(SHOWS_FILE)) {
-    const data = readDefaultShowsPayload();
+    // Prefer the repo's current shows.json so any admin edits you committed stay available.
+    // Otherwise fall back to default-shows.json.
+    let seedFile = path.join(REPO_DATA_DIR, "shows.json");
+    let data;
+    if (fs.existsSync(seedFile)) {
+      const raw = fs.readFileSync(seedFile, "utf8");
+      data = JSON.parse(raw);
+    } else {
+      data = readDefaultShowsPayload();
+    }
     writeShows(data);
     return clonePayload(data);
   }
@@ -279,6 +318,7 @@ app.use((err, _req, res, _next) => {
 });
 
 ensureDirs();
+seedUploadsFromRepoIfEmpty();
 
 app.listen(PORT, () => {
   console.log(`Gallery running at http://localhost:${PORT}`);
