@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery — Admin</title>
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+  <div class="admin">
+    <h1>Gallery admin</h1>
+    <p class="sub">
+      Edit shows and media. Saved to <span class="mono">data/shows.json</span> · uploads in <span class="mono">uploads/</span>
+      · run <span class="mono">npm start</span>.
+    </p>
+
+    <section class="panel" id="loginPanel">
+      <h2>Sign in</h2>
+      <p class="hint">
+        Set <span class="mono">ADMIN_TOKEN</span> in a <span class="mono">.env</span> file (see
+        <span class="mono">.env.example</span>), restart the server, then paste the same token here.
+      </p>
+      <div class="row">
+        <label for="adminToken">Admin token</label>
+        <input type="password" id="adminToken" autocomplete="current-password" />
+      </div>
+      <button type="button" class="btn btn-accent" id="btnLogin">Continue</button>
+      <p class="error hidden" id="loginError"></p>
+    </section>
+
+    <section class="panel panel--editor hidden" id="editorPanel">
+      <header class="editor-head">
+        <h2>Content</h2>
+        <p class="hint hint--tight">
+          <a class="site-link" href="/">View site</a>
+          · save to apply
+        </p>
+      </header>
+      <div class="editor-toolbar">
+        <button type="button" class="btn btn-secondary btn-small" id="btnAddShow">+ Add show</button>
+        <button type="button" class="btn btn-accent" id="btnSave">Save all</button>
+        <span class="toolbar-status mono hidden" id="saveStatus"></span>
+      </div>
+      <p class="error hidden" id="saveError"></p>
+      <div id="showList" class="show-list"></div>
+    </section>
+  </div>
+  <script src="admin.js"></script>
+</body>
+</html>

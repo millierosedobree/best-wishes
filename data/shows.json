@@ -1,0 +1,20 @@
+{
+  "shows": [
+    {
+      "id": "show",
+      "label": "New show",
+      "title": "**Millie SHOW 111**",
+      "text": "AHSLkfjs;aldkjf;aslkdjf;alskdjf;alskjdf;aslk\n\nsgdkjah;askdjhg;lasdjf;laskjd;gljas;dlkjga;lkshd;glakshdg;lkahsd;lghas;dlkgjhas;klgha\naskdjghak;ljhglakjdhgakjshdfklasjhdflkajshdflkasjhdflkajshdlkfjahsdlkfhlkdsjhflakjsdhfkasadkjfhalksjdhflkajshdfkljashdlkfjhaslkjdfhalksjdhgoaksudhgaksudhaksjdhglskajhglakjsdhflasjkdhflakjshdja",
+      "images": [
+        "/uploads/1776341196302-6oyplus9irl_1727287116041__1_.jpeg"
+      ],
+      "imageCaptions": [
+        "**picture** of a *CASTLE*"
+      ],
+      "image": "/uploads/1776341196302-6oyplus9irl_1727287116041__1_.jpeg",
+      "cardColor": "#ffffff",
+      "symbol": "custom",
+      "symbolAsset": "/uploads/1776340800129-Asset_1.png"
+    }
+  ]
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Intro</title>
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <style>
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        overflow: hidden;
+      }
+      body {
+        background: #fff;
+        cursor: pointer;
+      }
+      video.intro-video {
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
+        display: block;
+        margin: 0 auto;
+      }
+
+      @media (min-width: 1024px) {
+        body {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+
+        video.intro-video {
+          width: 80vw;
+          height: 80vh;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <video
+      class="intro-video"
+      src="logoanimation.mp4"
+      autoplay
+      muted
+      loop
+      playsinline
+      preload="auto"
+    ></video>
+    <script>
+      (function () {
+        function goHome() {
+          window.location.href = "./home.html";
+        }
+
+        document.addEventListener("click", goHome);
+        document.addEventListener("touchstart", goHome, { passive: true });
+        document.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            goHome();
+          }
+        });
+      })();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gallery</title>
+  <link rel="icon" type="image/png" href="./favicon.png" />
+  <meta name="description" content="Best Wishes Unlimited gallery." />
+  <meta name="theme-color" content="#b8ff2e" />
+  <meta property="og:title" content="Gallery" />
+  <meta property="og:description" content="Best Wishes Unlimited gallery." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="/uploads/og-image.jpg" />
+  <link rel="preconnect" href="https://images.unsplash.com" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav-strip">
+    <div class="nav-scroll-frame">
+      <div class="nav-scroll" id="navScroll" role="tablist" aria-label="Shows">
+        <!-- Icons injected by script -->
+      </div>
+      <div class="nav-scroll-fade nav-scroll-fade--start" aria-hidden="true">
+        <span class="nav-scroll-fade__chev">‹</span>
+      </div>
+      <div class="nav-scroll-fade nav-scroll-fade--end" aria-hidden="true">
+        <span class="nav-scroll-fade__chev">›</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="stage">
+    <div class="viewer-panel" id="viewerPanel" aria-hidden="true">
+      <div class="viewer-panel__inner">
+        <div class="viewer" id="viewer" role="tabpanel" tabindex="0" aria-labelledby="tab-music" aria-hidden="true">
+          <article class="viewer-inner" id="viewerInner">
+            <div class="viewer-figures" id="viewerFigures"></div>
+            <div class="viewer-copy">
+              <h1 id="viewerTitle" class="rich-text"></h1>
+              <p id="viewerText" class="rich-text"></p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-links" aria-label="Contact links">
+    <a class="site-link-btn" href="https://what3words.com/highs.finishing.soft" target="_blank" rel="noreferrer noopener">what3words.com/highs.finishing.soft</a>
+    <a class="site-link-btn" href="tel:+447514627163">+44 7514 627163</a>
+    <a class="site-link-btn" href="mailto:millie@sendsbestwishes.com">millie@sendsbestwishes.com</a>
+    <a class="site-link-btn" href="https://instagram.com/bestwishes.unlimited" target="_blank" rel="noreferrer noopener">@bestwishes.unlimited</a>
+    <span class="site-footer-copy">© 2026 Best Wishes,</span>
+  </footer>
+
+  <div
+    id="imageLightbox"
+    class="image-lightbox"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+    aria-label="Full size image"
+    tabindex="-1"
+  >
+    <button type="button" class="image-lightbox__scrim" aria-label="Close preview" tabindex="-1"></button>
+    <div class="image-lightbox__content">
+      <button type="button" class="image-lightbox__close" aria-label="Close preview">×</button>
+      <button type="button" class="image-lightbox__arrow image-lightbox__prev" aria-label="Previous image" hidden>
+        <svg viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M15.4 4.4 8 12l7.4 7.6 1.4-1.4L10.8 12l5.9-6.2z"/>
+        </svg>
+      </button>
+      <button type="button" class="image-lightbox__arrow image-lightbox__next" aria-label="Next image" hidden>
+        <svg viewBox="0 0 24 24" width="36" height="36" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="m8.6 4.4-1.4 1.4L13.2 12l-5.9 6.2 1.4 1.4L16 12z"/>
+        </svg>
+      </button>
+      <div class="image-lightbox__frame">
+        <div class="image-lightbox__stage">
+          <img class="image-lightbox__img" alt="" decoding="async" />
+          <p class="image-lightbox__caption rich-text" aria-live="polite"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
