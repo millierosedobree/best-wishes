@@ -886,3 +886,74 @@ body.image-lightbox-active {
   outline: 2px solid var(--ink);
   outline-offset: 2px;
 }
+
+button.site-link-btn {
+  appearance: none;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.about-bubble {
+  position: fixed;
+  inset: unset;
+  margin: 0;
+  width: min(32rem, calc(100vw - 1.5rem));
+  max-width: calc(100vw - 1.5rem);
+  padding: 0;
+  border: 1px solid var(--ink);
+  border-radius: 16px;
+  background: var(--bg);
+  color: rgba(0, 0, 0, 0.88);
+  font-family: var(--font-times);
+  font-size: clamp(0.92rem, 2.2vw, 1.02rem);
+  line-height: 1.55;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  overflow: visible;
+}
+
+.about-bubble:focus {
+  outline: none;
+}
+
+.about-bubble:focus-visible {
+  outline: 2px solid var(--ink);
+  outline-offset: 3px;
+}
+
+.about-bubble__text {
+  padding: 1.05rem 1.2rem 1.15rem;
+  max-height: calc(100dvh - 4.5rem);
+  overflow: auto;
+  border-radius: inherit;
+}
+
+.about-bubble p {
+  margin: 0;
+}
+
+.about-bubble p + p {
+  margin-top: 0.85rem;
+}
+
+.about-bubble::after {
+  content: "";
+  position: absolute;
+  left: var(--tail-x, 50%);
+  bottom: -6px;
+  width: 12px;
+  height: 12px;
+  background: var(--bg);
+  border-right: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+  transform: translateX(-50%) rotate(45deg);
+}
+
+.about-bubble--below::after {
+  bottom: auto;
+  top: -6px;
+  border: 0;
+  border-top: 1px solid var(--ink);
+  border-left: 1px solid var(--ink);
+}

@@ -910,4 +910,40 @@
   window.addEventListener("hashchange", () => {
     showFromHash();
   });
+
+  const aboutBtn = document.querySelector(".about-btn");
+  const aboutBubble = document.getElementById("aboutBubble");
+  if (aboutBtn && aboutBubble) {
+    const aboutMargin = 12;
+    const aboutGap = 12;
+
+    function placeAboutBubble() {
+      if (!aboutBubble.matches(":popover-open")) return;
+      const rect = aboutBtn.getBoundingClientRect();
+      const width = Math.min(520, window.innerWidth - aboutMargin * 2);
+      aboutBubble.style.width = width + "px";
+      const height = aboutBubble.offsetHeight;
+      let left = rect.left + rect.width / 2 - width / 2;
+      left = Math.max(aboutMargin, Math.min(left, window.innerWidth - width - aboutMargin));
+      const spaceAbove = rect.top - aboutMargin;
+      const openBelow = spaceAbove < height + aboutGap && window.innerHeight - rect.bottom > spaceAbove;
+      aboutBubble.classList.toggle("about-bubble--below", openBelow);
+      let top = openBelow ? rect.bottom + aboutGap : rect.top - height - aboutGap;
+      top = Math.max(aboutMargin, Math.min(top, window.innerHeight - height - aboutMargin));
+      aboutBubble.style.left = left + "px";
+      aboutBubble.style.top = top + "px";
+      const tail = rect.left + rect.width / 2 - left;
+      aboutBubble.style.setProperty("--tail-x", Math.max(18, Math.min(tail, width - 18)) + "px");
+    }
+
+    aboutBubble.addEventListener("toggle", (event) => {
+      if (event.newState === "open") {
+        placeAboutBubble();
+        aboutBubble.focus();
+      }
+    });
+
+    window.addEventListener("resize", placeAboutBubble);
+    window.addEventListener("scroll", placeAboutBubble, { passive: true });
+  }
 })();

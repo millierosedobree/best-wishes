@@ -12,7 +12,7 @@
   <meta property="og:type" content="website" />
   <meta property="og:image" content="/uploads/og-image.jpg" />
   <link rel="preconnect" href="https://images.unsplash.com" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=about2" />
 </head>
 <body>
   <header class="nav-strip">
@@ -50,6 +50,11 @@
     <a class="site-link-btn" href="tel:+447514627163">+44 7514 627163</a>
     <a class="site-link-btn" href="mailto:millie@sendsbestwishes.com">millie@sendsbestwishes.com</a>
     <a class="site-link-btn" href="https://instagram.com/bestwishes.unlimited" target="_blank" rel="noreferrer noopener">@bestwishes.unlimited</a>
+    <button
+      type="button"
+      class="site-link-btn about-btn"
+      popovertarget="aboutBubble"
+    >about</button>
     <span class="site-footer-copy">© 2026 Best Wishes,</span>
   </footer>
 
@@ -84,6 +89,14 @@
     </div>
   </div>
 
-  <script src="script.js"></script>
+  <div id="aboutBubble" class="about-bubble" popover role="dialog" aria-label="About Best Wishes," tabindex="-1">
+    <div class="about-bubble__text">
+      <p>Best Wishes, takes its name from its first group exhibition: a presentation of drawings sent and collected over 2021, installed across the desks of an office on Camberwell New Road vacated during the pandemic. The space was occupied shortly after by a gathering of office desk mascots made by invited participants.</p>
+      <p>Since then, Best Wishes, has organised exhibitions in repurposed office spaces across London and Amsterdam, including Amsterdam’s former District Court, held by @bologna.cc, and at 1 Hoxton Street. In April 2025, it took over the Plaster Magazine store as an alternative format for curating and selling work.</p>
+      <p>Best Wishes, has grown into an expanded practice of curation as co-making, where the roles of artist, gallerist, and friend overlap in a spirit of collaboration. Next Door is its first permanent space: a former bike shed adjacent to Millie Rose Dobree’s home in East London. From here—and often extending into the street or the flat itself—Best Wishes, runs a programme of solo and small group exhibitions that lend themselves to this intimate space.</p>
+    </div>
+  </div>
+
+  <script src="script.js?v=about"></script>
 </body>
 </html>
